@@ -1,5 +1,5 @@
 <?php
-include "lexer.php";
+include "lexer/Lexer.php";
 
 $colorGreen = "\033[0;32m";
 $colorYellow = "\033[0;33m";

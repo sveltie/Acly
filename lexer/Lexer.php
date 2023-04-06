@@ -1,6 +1,6 @@
 <?php
-include "token.php";
-include "utils.php";
+include "Token.php";
+include "utils/utils.php";
 
 /**
  * Compiler frontend
