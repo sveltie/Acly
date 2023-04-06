@@ -1,5 +1,6 @@
 <?php
 include "Token.php";
+include "TokenType.php";
 include "utils/utils.php";
 
 /**
@@ -95,26 +96,35 @@ class Lexer
 
         $s = $this->source[$this->pos];
 
-        if (ctype_alnum($s)) {
-            $identifier = $this->get_identifier();
+        $keyword_tokens = array(
+            "fn" => TokenType::FUNCTION ,
+        );
 
-            if ($identifier == "fn") {
-                return new Token(TOKEN_KEYWORD, $identifier);
+        if (ctype_alnum($s)) {
+            $tmp = "";
+
+            while ($this->is_not_empty() && ctype_alnum($this->source[$this->pos])) {
+                $tmp .= $this->source[$this->pos];
+                $this->advance();
+            }
+
+            if (isset($keyword_tokens[$tmp])) {
+                return new Token($keyword_tokens[$tmp], $tmp);
             } else {
-                return new Token(TOKEN_IDENTIFIER, $identifier);
+                return new Token(TokenType::IDENTIFIER, $tmp);
             }
         }
 
-        $token_set = array(
-            "(" => TOKEN_RPAREN,
-            ")" => TOKEN_LPAREN,
-            ";" => TOKEN_SEMICOLON,
-            ":" => TOKEN_COLON,
+        $literal_tokens = array(
+            "(" => TokenType::RPAREN,
+            ")" => TokenType::LPAREN,
+            ";" => TokenType::SEMICOLON,
+            ":" => TokenType::COLON,
         );
 
-        if (isset($token_set[$s])) {
+        if (isset($literal_tokens[$s])) {
             $this->advance();
-            return new Token($token_set[$s], $s);
+            return new Token($literal_tokens[$s], $s);
         }
 
         // Check if a sequence a string or not by walking from s that starts 
@@ -131,13 +141,13 @@ class Lexer
 
             if ($this->is_not_empty()) {
                 $this->advance();
-                return new Token(TOKEN_STRING, $tmp);
+                return new Token(TokenType::STRING, $tmp);
             }
 
             return false;
         }
 
-        return new Token(TOKEN_EOF, null);
+        return false;
     }
 }
 ?>
