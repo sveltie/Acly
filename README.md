@@ -1,8 +1,4 @@
 # Acly
-
-<<<<<<< HEAD
-A small programming language built for fun small project with PHP as the compiler. Yes, you heard that right.
-=======
 A small programming language built for fun small project with PHP as the compiler. Yes, you heard that right. The language is also
 named after a dear friend of mine, Acly.
 
@@ -12,4 +8,3 @@ named after a dear friend of mine, Acly.
 
 ## Contributing
 Any kind of contribution is welcomed.
->>>>>>> b691349b74db5a14baf235c2755260a7d856532d
