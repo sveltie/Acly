@@ -4,6 +4,8 @@ named after a dear friend of mine, Acly.
 
 <p align="center">
 <img src="https://cdn.discordapp.com/attachments/1008587563730223175/1093413184620220416/Illustration2.png" width=400>
+<br>
+character name: Hatoba Tsugu, art by me
 </p>
 
 ## Contributing
