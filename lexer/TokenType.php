@@ -15,5 +15,6 @@ enum TokenType: string
     case COLON = "TOKEN_COLON";
     case SEMICOLON = "TOKEN_SEMICOLON";
     case EOF = "TOKEN_EOF";
+    case EOS = "TOKEN_EOS";
 }
 ?>
