@@ -14,5 +14,6 @@ echo "Size of file: " . strlen($buffer) . "\n";
 $lexer = new Lexer($buffer);
 $parser = new Parser($lexer);
 
-$parser->view(TokenType::FUNCTION , TokenType::IDENTIFIER);
+// $parser->view(TokenType::FUNCTION , TokenType::IDENTIFIER);
+$parser->test();
 ?>

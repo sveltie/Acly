@@ -116,8 +116,8 @@ class Lexer
         }
 
         $literal_tokens = array(
-            "(" => TokenType::RPAREN,
-            ")" => TokenType::LPAREN,
+            "(" => TokenType::LPAREN,
+            ")" => TokenType::RPAREN,
             ";" => TokenType::SEMICOLON,
             ":" => TokenType::COLON,
         );
