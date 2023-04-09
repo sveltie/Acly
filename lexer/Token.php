@@ -7,7 +7,7 @@ class Token
     public $type;
     public $value;
 
-    public function __construct(TokenType $type, string $value)
+    public function __construct(TokenType $type, mixed $value)
     {
         $this->type = $type;
         $this->value = $value;

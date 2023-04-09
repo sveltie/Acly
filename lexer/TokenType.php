@@ -1,20 +1,38 @@
 <?php
-enum TokenType: string
+enum TokenType
 {
-    // Variable
-    case IDENTIFIER = "TOKEN_IDENTIFIER";
+    // Literals
+    case IDENTIFIER;
+    case STRING;
+    case NUMBER;
 
     // Keyword
-    case STRING = "TOKEN_STRING";
-    case INTEGER = "TOKEN_INTEGER";
-    case BOOLEAN = "TOKEN_BOOLEAN";
-    case FUNCTION = "TOKEN_FUNCTION";
+    case FUNCTION;
+    case IF;
+    case ELSE;
+    case FOR;
+    case WHILE;
+    case TRUE;
+    case FALSE;
+    case AND;
+    case OR;
+    case NULL;
+    case RETURN;
 
-    case LPAREN = "TOKEN_LPAREN";
-    case RPAREN = "TOKEN_RPAREN";
-    case COLON = "TOKEN_COLON";
-    case SEMICOLON = "TOKEN_SEMICOLON";
-    case EOF = "TOKEN_EOF";
-    case EOS = "TOKEN_EOS";
+    // Separator
+    case LPAREN;
+    case RPAREN;
+    case COLON;
+    case END;
+
+    // Operator
+    case ADDITION;
+    case SUBTRACT;
+    case MULTIPLY;
+    case DIVISION;
+    case EQUAL;
+
+
+    case EOF;
 }
 ?>

@@ -1,19 +1,55 @@
 <?php
-include "lexer/Lexer.php";
-include "parser/Parser.php";
+// require_once "lexer/Lexer.php";
+require_once "lexer/Scanner.php";
+require_once "parser/Parser.php";
+require_once "utils/utils.php";
 
-$colorGreen = "\033[0;32m";
-$colorYellow = "\033[0;33m";
-$colorReset = "\033[0m";
-$colorCyan = "\033[0;36m";
+function main($argv)
+{
+    if (sizeof($argv) > 0) {
+        $flag = $argv[1];
 
-$buffer = read_file("./target/main.acly");
+        if ($flag === "--tokenize") {
+            $buffer = read_file($argv[2]);
 
-echo "Size of file: " . strlen($buffer) . "\n";
+            echo "Size of file: " . strlen($buffer) . "\n";
 
-$lexer = new Lexer($buffer);
-$parser = new Parser($lexer);
+            $scanner = new Scanner($buffer);
+            $tokens = $scanner->scan_tokens();
 
-// $parser->view(TokenType::FUNCTION , TokenType::IDENTIFIER);
-$parser->test();
+            if ($tokens) {
+                foreach ($tokens as &$token) {
+                    if ($token instanceof Token) {
+                        print_r($token);
+                    }
+                }
+            }
+
+            return;
+        }
+
+        $buffer = read_file($argv[1]);
+
+        echo "Size of file: " . strlen($buffer) . "\n";
+
+        $scanner = new Scanner($buffer);
+        $tokens = $scanner->scan_tokens();
+
+        if ($tokens) {
+            foreach ($tokens as &$token) {
+                if ($token instanceof Token) {
+                    echo $token->value;
+                }
+            }
+
+            return;
+        }
+
+        return;
+    }
+
+    echo "ERROR: no file path were provided" . "\n";
+}
+
+main($argv);
 ?>
