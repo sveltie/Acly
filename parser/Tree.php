@@ -1,16 +1,20 @@
 <?php
-/**
- * Tree data structure for managing how the code will run
- */
-class Tree
-{
-    public $type;
-    public $children;
+require_once "./lexer/Token.php";
 
-    public function __construct(mixed $type, array $children)
+abstract class Expr
+{
+    public $left;
+    public $operator;
+    public $right;
+}
+
+class Binary extends Expr
+{
+    public function __construct(Expr $left, Token $operator, Expr $right)
     {
-        $this->type = $type;
-        $this->children = $children;
+        $this->left = $left;
+        $this->operator = $operator;
+        $this->right = $right;
     }
 }
 ?>

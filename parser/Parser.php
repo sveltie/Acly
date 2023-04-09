@@ -1,120 +1,60 @@
 <?php
-include "Tree.php";
+require_once "./lexer/Scanner.php";
 
-/**
- * Compiler backend by using Abstract Syntax Tree (AST)
- */
 class Parser
 {
-    private $lexer;
-    private $token;
-
-    public function __construct(Lexer $lexer)
-    {
-        $this->lexer = $lexer;
-        $this->token = $this->lexer->next_token();
-    }
+    private $tokens;
+    private $current = 0;
 
     /**
-     * Consume types and check if current token is the same as the
-     * types that are being consumed
-     * 
-     * @param TokenType ...$types
-     * @return Token|bool
+     * @param Token ...$tokens
      */
-    private function consume(...$types): Token|bool
+    public function __construct(...$tokens)
     {
-        $token = $this->token;
-        $this->token = $this->lexer->next_token();
-
-        if (!$token) {
-            echo "ERROR: end of file";
-            return false;
-        }
-
-        // Iterate through each of the types array
-        foreach ($types as &$type) {
-            if ($token->type === $type) {
-                return $token;
-            }
-        }
-
-        return false;
+        $this->tokens = $tokens;
     }
 
-    private function parse_scope()
+    private function expression()
     {
-        if (!$this->consume(TokenType::COLON))
-            return false;
-
-        $scope = array();
-
-        while (true) {
-            $identifier = $this->consume(TokenType::IDENTIFIER, TokenType::EOS);
-            if (!$identifier)
-                return false;
-            if ($identifier->type == TokenType::EOS)
-                break;
-        }
+        // template
     }
 
-    /**
-     * parse a function
-     * 
-     * @todo return a Function with it's name and body
-     */
-    private function parse_function()
+    private function equality()
     {
-        $identifier = $this->consume(TokenType::IDENTIFIER);
+        // template
+    }
 
-        if (!$identifier)
-            return false;
+    private function advance()
+    {
+        // template
+    }
 
-        if (!$this->consume(TokenType::LPAREN))
-            return false;
+    private function peek()
+    {
+        // template
+    }
 
-        if (!$this->consume(TokenType::RPAREN))
-            return false;
+    private function is_at_end()
+    {
+        // template
+    }
 
-        print_r($identifier);
+    private function previous()
+    {
+        // template
     }
 
     /**
-     * arg parser for function
-     * 
-     * @return array|bool
-     */
-    private function parse_args(): array|bool
-    {
-        $parse_args = array();
-        $expr = $this->consume(TokenType::STRING);
-
-        if (!$expr)
-            return false;
-
-        array_push($parse_args, $expr);
-
-        return $parse_args;
-    }
-
-    /**
-     * View the current token and can be limited to some token types
-     * 
      * @param TokenType ...$types
      */
-    public function view(TokenType...$types): void
+    private function match(...$types)
     {
-        while ($this->token) {
-            print_r($this->consume(...$types));
-        }
+        // template
     }
 
-
-    public function test()
+    private function consume(...$types)
     {
-        while ($this->token) {
-            $this->parse_function();
-        }
+        // template
     }
 }
 ?>
